@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration Page</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --primary-dark: #0056b3;
+      --accent: #00c6ff;
+      --form-bg: #ffffff;
+      --footer-bg: #333;
+      --footer-text: #ccc;
+    }
+
+    @keyframes bgGradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+      background-size: 400% 400%;
+      animation: bgGradient 15s ease infinite, fadeInBody 1.5s ease-in;
+      color: #333;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(10vh); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      padding: 3vh 5vw;
+      text-align: center;
+      box-shadow: 0 0.3vh 0.6vh rgba(0,0,0,0.2);
+      color: white;
+      animation: slideDown 1s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3vw;
+    }
+
+    main {
+      padding: 4vh 5vw;
+      max-width: 90vw;
+      margin: auto;
+      min-height: calc(100vh - 25vh);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: zoomIn 1.2s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    form {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2vw;
+      background-color: var(--form-bg);
+      padding: 3vh 3vw;
+      border-radius: 2vh;
+      box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.1);
+      animation: fadeInForm 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInForm {
+      from { opacity: 0; transform: translateY(3vh); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    label {
+      flex: 1 1 100%;
+      font-weight: bold;
+      font-size: 1.2vw;
+      color: var(--primary-dark);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      flex: 1 1 45%;
+      padding: 1.5vh 1vw;
+      font-size: 1vw;
+      border: 0.1vh solid #ccc;
+      border-radius: 0.5vh;
+      width: 100%;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0.5vh rgba(0,123,255,0.5);
+    }
+
+    button {
+      flex: 1 1 100%;
+      padding: 1.5vh;
+      font-size: 1.2vw;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5vh;
+      cursor: pointer;
+      width: 50%;
+      align-self: center;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      text-align: center;
+      padding: 2vh;
+      width: 100%;
+      font-size: 1vw;
+      color: var(--footer-text);
+      animation: fadeInFooter 2s ease;
+      margin-bottom: 5vh;
+    }
+
+    @keyframes fadeInFooter {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="background: linear-gradient(to right, var(--primary-dark), var(--primary)); padding: 1.5vh 5vw; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 0.2vh 0.6vh rgba(0,0,0,0.2);">
+    <div style="color: white; font-size: 1.5vw; font-weight: bold;"> apna College</div>
+    <div>
+      <a href="#" style="color: white; margin: 0 1vw; text-decoration: none; font-size: 1vw;">Home</a>
+      <div style="position: relative; display: inline-block;">
+        <a href="#" style="color: white; margin: 0 1vw; text-decoration: none; font-size: 1vw;">Courses</a>
+        <div style="display: none; position: absolute; background-color: white; min-width: 10vw; box-shadow: 0px 0.5vh 1vh rgba(0,0,0,0.2); z-index: 1;">
+          <a href="#" style="color: black; padding: 1vh 1vw; display: block; text-decoration: none;">BCA</a>
+          <a href="#" style="color: black; padding: 1vh 1vw; display: block; text-decoration: none;">BBA</a>
+          <a href="#" style="color: black; padding: 1vh 1vw; display: block; text-decoration: none;">B.Com</a>
+          <a href="#" style="color: black; padding: 1vh 1vw; display: block; text-decoration: none;">MBA</a>
+        </div>
+      </div>
+
+      <script>
+        const courseLink = document.querySelector("nav div a[href='#']");
+        const dropdown = courseLink.nextElementSibling;
+
+        courseLink.parentElement.addEventListener("mouseover", () => {
+          dropdown.style.display = "block";
+        });
+
+        courseLink.parentElement.addEventListener("mouseleave", () => {
+          dropdown.style.display = "none";
+        });
+      </script>
+      <a href="#" style="color: white; margin: 0 1vw; text-decoration: none; font-size: 1vw;">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Shri Ram College Registration</h1>
+  </header>
+
+  <main>
+    <form action="register.php" method="POST" onsubmit="return validateForm()">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+      <button type="submit">Register</button>
+    </form>
+  </main>
+
+  
+
+  <script>
+    function validateForm() {
+      const fullname = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (fullname === "" || email === "" || password === "" || confirmPassword === "") {
+        alert("Please fill out all fields.");
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
+  
